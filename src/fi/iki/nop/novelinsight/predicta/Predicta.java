@@ -1,4 +1,4 @@
-package fi.nop.novelinsight.predicta;
+package fi.iki.nop.novelinsight.predicta;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

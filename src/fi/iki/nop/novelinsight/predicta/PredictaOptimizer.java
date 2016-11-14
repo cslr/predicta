@@ -1,4 +1,4 @@
-package fi.nop.novelinsight.predicta;
+package fi.iki.nop.novelinsight.predicta;
 
 public class PredictaOptimizer {
 	
