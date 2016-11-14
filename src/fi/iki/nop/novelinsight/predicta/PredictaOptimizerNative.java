@@ -1,6 +1,6 @@
 package fi.iki.nop.novelinsight.predicta;
 
-public class PredictOptimizerNative extends PredictaOptimizer {
+public class PredictaOptimizerNative extends PredictaOptimizer {
 	static {
 		System.loadLibrary("predicta.dll");
 	}
