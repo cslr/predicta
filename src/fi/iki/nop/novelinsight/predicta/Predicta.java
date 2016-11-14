@@ -52,7 +52,7 @@ public class Predicta {
 	
 	
 	public Predicta(){
-		optimizer = new PredictaOptimizer();
+		optimizer = new PredictaOptimizerNative();
 		model = new PredictaModel();
 	}
 

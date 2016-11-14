@@ -2,7 +2,7 @@ package fi.iki.nop.novelinsight.predicta;
 
 public class PredictaOptimizerNative extends PredictaOptimizer {
 	static {
-		System.loadLibrary("predicta.dll");
+		System.loadLibrary("predicta");
 	}
 	
 	// starts optimization, returns false if optimization cannot started or if it ended to a failure
