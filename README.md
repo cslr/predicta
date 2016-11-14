@@ -1,0 +1,2 @@
+# predicta
+Simple customer scoring
