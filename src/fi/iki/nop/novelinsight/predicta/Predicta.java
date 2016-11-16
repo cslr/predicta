@@ -10,6 +10,9 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import com.ibm.icu.text.Normalizer.Mode;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
@@ -34,8 +37,9 @@ public class Predicta {
 	private Text text_2;
 	private Text statusLine;
 	
-	private PredictaModel model;
-	private PredictaOptimizer optimizer;
+	// bad coding..
+	public PredictaModel model;
+	public PredictaOptimizer optimizer;
 
 	/**
 	 * Launch the application.
@@ -44,6 +48,11 @@ public class Predicta {
 	public static void main(String[] args) {
 		try {
 			window = new Predicta();
+			
+			Display display = Display.getDefault();
+			display.setAppName(window.model.getAppName());
+			display.setAppVersion(window.model.getAppVersion());			
+			
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,7 +189,7 @@ public class Predicta {
 		if(currentRisk > scale.getMaximum()) currentRisk = scale.getMaximum();
 		
 		scale.setSelection((int)currentRisk);
-		scale.setToolTipText("-1.0 = only certain cases, 0.0 = normal (exptected value), 1.0 = try uncertain cases");
+		scale.setToolTipText("-1.0 = only certain cases, 0.0 = normal, 1.0 = try uncertain cases");
 		new Label(composite, SWT.NONE);
 		
 		Label lblResults = new Label(composite, SWT.NONE);
@@ -230,7 +239,7 @@ public class Predicta {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if(optimizer.startOptimization(model.getTrainingFile(), model.getScoredFile(), model.getResultsFile(), 
-						model.getRisk(), model.getOptimizationTime())){
+						model.getRisk(), model.getOptimizationTime(), model.demoVersion())){
 					//btnPredict.setEnabled(false);
 					//btnStopComputation.setEnabled(true);
 				}
@@ -337,9 +346,12 @@ public class Predicta {
 				MessageBox mb = new MessageBox(shlPredicta, SWT.OK);
 				
 				String msg = model.getAppName() + " v. " + model.getAppVersion() + 
-						"\n (C) Copyright Tomas Ukkonen 2016\n" + 
-						"<tomas.ukkonen@iki.fi>";
+						"\n (C) Copyright Tomas Ukkonen 2016 <nop@iki.fi>";
 				
+				if(model.demoVersion())
+					msg = msg + "\n\nDemo calculates only scores the first 10 examples.\n" + 
+								"Purchased version allows scoring unlimited amount of data.";
+							
 				mb.setMessage(msg);
 				
 				mb.open();

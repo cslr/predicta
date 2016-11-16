@@ -9,6 +9,8 @@ public class PredictaModel {
 	private String appName = "Novel Insight Scoring";
 	private String appVersion = "0.91b (narya core)";
 	
+	private boolean demoVersion = false;
+	
 	private boolean isRunning = false;
 	
 	private String trainingCSVFile = "";
@@ -30,7 +32,10 @@ public class PredictaModel {
 	private double optimizationTime = 300.0; // default is 5 minutes
 
 	public String getAppName(){
-		return appName;
+		if(this.demoVersion == false)
+			return appName;
+		else
+			return (appName + " (DEMO)");
 	}
 	
 	public String getAppVersion(){
@@ -100,5 +105,9 @@ public class PredictaModel {
 	
 	public double getOptimizationTime(){
 		return optimizationTime;
+	}
+	
+	public boolean demoVersion(){
+		return demoVersion;
 	}
 }
