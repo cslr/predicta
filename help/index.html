@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<title>
+Novel Insight Easy Scoring
+</title>
+</head>
+
+<h1>Novel Insight Scoring</h1>
+
+<img src="novel-insight-scoring.png" align="right">
+<p>
+Novel Insight Scoring is analytical CRM software for automatically scoring customers given example (scored) data. 
+The user of the software can set optimization time and adjust risk level (pessimistic, neutral or optimistic scoring) and 
+score new customers without detailed knowledge about data analysis and machine learning methods. 
+The scoring results are stored in a CSV file for further processing and importing to databases etc.
+
+<h1>Step by step example</h1>
+
+<p>
+To test how the program works, start program by clicking <b>start.exe</b> or <b>ni-scoring.jar</b>. If you don't have 
+Java installed, install it from <a href="www.java.com/download/">here</a>.
+
+<p>
+After program has started. Select included CSV file <i>examples.csv</i> as pre-scored data 
+by clicking the top most "Select CSV file..". 
+
+<p>
+Secondly, select data that will be scored by clicking the middle "Select CSV file.." button and select <i>customers.csv</i> data file
+from the same directory where the program was installed. Then click the lowest of "Select CSV file" buttons to set the results
+file ("results.csv") where scoring results will be saved.
+
+<p>
+Finally, set risk taking to zero (middle) and from Quality menu select optimization time to be "5 minutes". 
+This will give you quick rough scoring results. After these steps click "Calculate scoring" button to 
+start the optimization.
+
+<p>
+After optimization, you can view the resulting <i>results.csv</i> file where scoring values are in a same order as rows in 
+<i>customers.csv</i> file.
+
+
+<h1>Data files</h1>
+
+<p>
+To score customers, user must have two text (ASCII) files in CSV format. 
+The files contain customer information given as floating point (or integer) numbers separated by spaces or commas. 
+Customers are represented as vectors and each line of the file contains information from a single customer. 
+The first file contains D+1 entries per line, 
+where the first D numbers contain customer information and the last number of each row contain customer scoring. 
+This can be total income from customer, activity level of customer etc. The second file contains D columns per line 
+having same information as the first file but without scoring data.
+
+<h2>Results</h2>
+
+<p>
+Results text file has same number of lines as the second file (to be scored data) and contains scoring values 
+for each row of the data file.
+
+<h1>Options</h1>
+
+<h2>Risk</h2>
+
+<p>
+User can adjust amount of risk taken by scoring. The machine learning algorithms estimate scoring value 
+as well as its standard deviation (expected error). The actual score given to each customer can be either 1) pessimistic 
+(negative risk values) meaning that lowest likely scoring value will be used, 2) neutral (zero risk value) meaning that 
+expected/mean scoring value is used, and 3) optimistic (positive risk), meaning that highest likely scoring value is used.
+
+<p>
+Pessimistic risk means no uncertain customers get high scoring values and top customers are have very low probability of 
+being invalid customers. This setting is maybe preferred initially, when aiming marketing campaign to can contact to 
+the most high-valued customers.
+
+<p>
+Optimistic risk values means many uncertain cases are contacted. This means scoring now explores also 
+new areas/customers that look promising. It is recommended that when repeating marketing campaigns etc. , one 
+takes also some risk so that new fresh customerships have chance to develop.
+
+<h2>Quality</h2>
+
+<p>
+The menu option can be used to set amount of time used in computing scoring model. 
+Increasing optimization time leads to better analysis of uncertainties. If risk is set to zero, 
+this value can be low as software computes then only expected scoring value and do not adjust scoring values.
+
+
+<h1>Improving scoring results</h1>
+
+<p>
+Scoring results depend on quality of input data. The number of features (columns) per customer should be kept as low as 
+possible by avoiding redundant data while keeping numbers as informative as possible. The software uses neural networks
+as a prediction model.
+
+<p>
+The software optimizes scoring in parallel and gives better and better results if more computational time is available. 
+This means that using faster multicore CPUs and/or increasing computing time through Quality menu leads
+to better solutions. During calculations, "Analyzing uncertainty" reports number of iterations which describes total 
+amount of computations performed and higher values typically leads to better results. Another value to look at in  
+"Analyzing uncertainty" is percentage error term. The value should oscillate near 100% but the lowest value seen during
+computations indicates the best solution found.
+
+
+<body>
+</body>
+
+</html>
+

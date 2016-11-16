@@ -411,7 +411,13 @@ public class Predicta {
 		mntmHelp.setMenu(menu_2);
 		
 		MenuItem mntmHelp_1 = new MenuItem(menu_2, SWT.NONE);
-		mntmHelp_1.setEnabled(false);
+		mntmHelp_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String path = System.getProperty("user.dir");
+				org.eclipse.swt.program.Program.launch(path + "/help/index.html");
+			}
+		});
 		mntmHelp_1.setText("Help");
 		
 		new MenuItem(menu_2, SWT.SEPARATOR);
