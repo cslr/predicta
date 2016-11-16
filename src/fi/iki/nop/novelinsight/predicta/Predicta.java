@@ -49,9 +49,8 @@ public class Predicta {
 		try {
 			window = new Predicta();
 			
-			Display display = Display.getDefault();
-			display.setAppName(window.model.getAppName());
-			display.setAppVersion(window.model.getAppVersion());			
+			Display.setAppName(window.model.getAppName());
+			Display.setAppVersion(window.model.getAppVersion());			
 			
 			window.open();
 		} catch (Exception e) {
