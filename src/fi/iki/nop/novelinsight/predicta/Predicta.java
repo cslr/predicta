@@ -432,8 +432,11 @@ public class Predicta {
 						"\n (C) Copyright Tomas Ukkonen 2016 <nop@iki.fi>";
 				
 				if(model.demoVersion())
-					msg = msg + "\n\nDemo calculates only scores the first 10 examples.\n" + 
+					msg = msg + "\n\nDemo scores only the first 10 examples.\n" + 
 								"Purchased version allows scoring unlimited amount of data.";
+				else
+					msg = msg + "\n\nCommercial version. Each purchase of this software allows \n"
+							  + "installation to a SINGLE computer and use by a SINGLE user.";
 							
 				mb.setMessage(msg);
 				

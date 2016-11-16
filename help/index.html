@@ -2,7 +2,7 @@
 
 <head>
 <title>
-Novel Insight Easy Scoring
+Novel Insight Scoring
 </title>
 </head>
 
@@ -18,15 +18,15 @@ The scoring results are stored in a CSV file for further processing and importin
 <h1>Step by step example</h1>
 
 <p>
-To test how the program works, start program by clicking <b>start.exe</b> or <b>ni-scoring.jar</b>. If you don't have 
+To test how the program works, start program by clicking <b>ni-scoring.exe</b> or <b>ni-scoring.jar</b>. If you don't have 
 Java installed, install it from <a href="www.java.com/download/">here</a>.
 
 <p>
 After program has started. Select included CSV file <i>examples.csv</i> as pre-scored data 
-by clicking the top most "Select CSV file..". 
+by clicking the top most "Select CSV file.." - button. 
 
 <p>
-Secondly, select data that will be scored by clicking the middle "Select CSV file.." button and select <i>customers.csv</i> data file
+Then, select data that will be scored by clicking the middle "Select CSV file.." button and select <i>customers.csv</i> data file
 from the same directory where the program was installed. Then click the lowest of "Select CSV file" buttons to set the results
 file ("results.csv") where scoring results will be saved.
 
@@ -54,7 +54,7 @@ having same information as the first file but without scoring data.
 <h2>Results</h2>
 
 <p>
-Results text file has same number of lines as the second file (to be scored data) and contains scoring values 
+Results text file has equal number of lines as the second file (to be scored data) and contains scoring values 
 for each row of the data file.
 
 <h1>Options</h1>
@@ -65,41 +65,41 @@ for each row of the data file.
 User can adjust amount of risk taken by scoring. The machine learning algorithms estimate scoring value 
 as well as its standard deviation (expected error). The actual score given to each customer can be either 1) pessimistic 
 (negative risk values) meaning that lowest likely scoring value will be used, 2) neutral (zero risk value) meaning that 
-expected/mean scoring value is used, and 3) optimistic (positive risk), meaning that highest likely scoring value is used.
+expected/mean scoring value is used, and 3) optimistic (positive risk), meaning that the highest likely scoring value is used.
 
 <p>
 Pessimistic risk means no uncertain customers get high scoring values and top customers are have very low probability of 
-being invalid customers. This setting is maybe preferred initially, when aiming marketing campaign to can contact to 
+being invalid customers. This setting is maybe preferred initially, when aiming marketing campaign to contact to 
 the most high-valued customers.
 
 <p>
 Optimistic risk values means many uncertain cases are contacted. This means scoring now explores also 
-new areas/customers that look promising. It is recommended that when repeating marketing campaigns etc. , one 
-takes also some risk so that new fresh customerships have chance to develop.
+new areas/customers that look promising. It is recommended that when repeating marketing campaigns etc. , 
+one takes also some risk so that new fresh customerships have chance to develop.
 
 <h2>Quality</h2>
 
 <p>
-The menu option can be used to set amount of time used in computing scoring model. 
-Increasing optimization time leads to better analysis of uncertainties. If risk is set to zero, 
-this value can be low as software computes then only expected scoring value and do not adjust scoring values.
-
+This menu option can be used to set amount of time used in computing scoring model. 
+Increasing optimization time leads to better results and better results from risk option.
 
 <h1>Improving scoring results</h1>
 
 <p>
 Scoring results depend on quality of input data. The number of features (columns) per customer should be kept as low as 
-possible by avoiding redundant data while keeping numbers as informative as possible. The software uses neural networks
-as a prediction model.
+possible by avoiding redundant data while keeping numbers as informative as possible.
 
 <p>
 The software optimizes scoring in parallel and gives better and better results if more computational time is available. 
 This means that using faster multicore CPUs and/or increasing computing time through Quality menu leads
 to better solutions. During calculations, "Analyzing uncertainty" reports number of iterations which describes total 
 amount of computations performed and higher values typically leads to better results. Another value to look at in  
-"Analyzing uncertainty" is percentage error term. The value should oscillate near 100% but the lowest value seen during
-computations indicates the best solution found.
+"Analyzing uncertainty" is percentage error term. The value should decrease to some value below 100% and then oscillate
+around that point. Computations should continue as long as error% keeps decreasing and some time after hitting the minimum in 
+order to get proper uncertainty analysis results.
 
+<hr>
+<p align="right"><small>Tomas Ukkonen tomas.ukkonen@iki.fi 2016</small>
 
 <body>
 </body>
