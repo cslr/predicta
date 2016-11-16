@@ -326,6 +326,84 @@ public class Predicta {
 		});
 		mntmExit.setText("Exit");
 		
+		MenuItem mntmQuality = new MenuItem(menu, SWT.CASCADE);
+		mntmQuality.setText("Quality");
+		mntmQuality.setToolTipText("Set optimization time");
+		
+		Menu menu_3 = new Menu(mntmQuality);
+		mntmQuality.setMenu(menu_3);
+		
+		MenuItem mntmOneMinute = new MenuItem(menu_3, SWT.RADIO);
+		mntmOneMinute.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmOneMinute.getSelection())
+					model.setOptimizationTime(1*60.0);
+			}
+		});
+		mntmOneMinute.setText("1 minute");
+		
+		MenuItem mntmMinutes = new MenuItem(menu_3, SWT.RADIO);
+		mntmMinutes.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmMinutes.getSelection())
+					model.setOptimizationTime(5*60.0);
+			}
+		});
+		mntmMinutes.setSelection(true);
+		mntmMinutes.setText("5 minutes");
+		
+		MenuItem mntmMinutes_1 = new MenuItem(menu_3, SWT.RADIO);
+		mntmMinutes_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmMinutes_1.getSelection())
+					model.setOptimizationTime(10*60.0);
+			}
+		});
+		mntmMinutes_1.setText("10 minutes");
+		
+		MenuItem mntmMinutes_2 = new MenuItem(menu_3, SWT.RADIO);
+		mntmMinutes_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmMinutes_2.getSelection())
+					model.setOptimizationTime(30*60.0);
+			}
+		});
+		mntmMinutes_2.setText("30 minutes");
+		
+		MenuItem mntmHour = new MenuItem(menu_3, SWT.RADIO);
+		mntmHour.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmHour.getSelection())
+					model.setOptimizationTime(60*60.0);
+			}
+		});
+		mntmHour.setText("1 hour");
+		
+		MenuItem mntmHours = new MenuItem(menu_3, SWT.RADIO);
+		mntmHours.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmHours.getSelection())
+					model.setOptimizationTime(6*60*60.0);
+			}
+		});
+		mntmHours.setText("6 hours");
+		
+		MenuItem mntmHours_1 = new MenuItem(menu_3, SWT.RADIO);
+		mntmHours_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(mntmHours_1.getSelection())
+					model.setOptimizationTime(24*60*60.0);
+			}
+		});
+		mntmHours_1.setText("24 hours");
+		
 		MenuItem mntmHelp = new MenuItem(menu, SWT.CASCADE);
 		mntmHelp.setText("Help");
 		
