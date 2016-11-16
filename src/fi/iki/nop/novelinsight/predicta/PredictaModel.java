@@ -6,8 +6,8 @@ import java.io.File;
 
 public class PredictaModel {
 	
-	private String appName = "Novel Insight Predicta";
-	private String appVersion = "0.9b (narya)";
+	private String appName = "Novel Insight Scoring";
+	private String appVersion = "0.91b (narya core)";
 	
 	private boolean isRunning = false;
 	
@@ -24,7 +24,10 @@ public class PredictaModel {
 	// results starts declining, try more uncertain cases (new areas/customers)
 	// where we want to also gain new information how uncertain cases respond 
 	// to marketing
-	private double riskLevel = 0.0;
+	private double riskLevel = -0.5;
+	
+	// optimization time in seconds
+	private double optimizationTime = 300.0; // default is 5 minutes
 
 	public String getAppName(){
 		return appName;
@@ -89,4 +92,13 @@ public class PredictaModel {
 		return riskLevel;
 	}
 
+	public boolean setOptimizationTime(double secs){
+		if(secs <= 0.0) return false;
+		optimizationTime = secs;
+		return true;
+	}
+	
+	public double getOptimizationTime(){
+		return optimizationTime;
+	}
 }

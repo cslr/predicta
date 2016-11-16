@@ -6,7 +6,8 @@ public class PredictaOptimizerNative extends PredictaOptimizer {
 	}
 	
 	// starts optimization, returns false if optimization cannot started or if it ended to a failure
-	native public boolean startOptimization(String trainingFile, String scoringFile, String resultsFile, double risk);
+	native public boolean startOptimization(String trainingFile, String scoringFile, String resultsFile, 
+			double risk, double optimizationTime);
 	
 	// starts returns true if optimization is running
 	native public boolean getRunning();

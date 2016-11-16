@@ -87,12 +87,12 @@ public class Predicta {
 		
 		Label lblTrainingData = new Label(composite, SWT.NONE);
 		lblTrainingData.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblTrainingData.setText("Training data");
+		lblTrainingData.setText("Scored data");
 		
 		text = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
 		text.setEditable(false);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		text.setToolTipText("CSV-file with D values per line. Each row's last column is treated as predicted value");
+		text.setToolTipText("CSV-file with D values per line. Each row's last column is treated as a predicted value/scoring.");
 		text.setText(model.getTrainingFile());
 		
 		Button btnCsvFile = new Button(composite, SWT.NONE);
@@ -120,13 +120,13 @@ public class Predicta {
 		btnCsvFile.setText("Select CSV file..");
 		
 		Label lblScoredData = new Label(composite, SWT.NONE);
-		lblScoredData.setText(" Predicted data ");
+		lblScoredData.setText("Input data");
 		lblScoredData.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
 		
 		text_1 = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
 		text_1.setEditable(false);
 		text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		text_1.setToolTipText("CSV text file. Each row must have D-1 values (missing the predicted value)");
+		text_1.setToolTipText("CSV text file. Each row must have D-1 values (missing a predicted value/score).");
 		text_1.setText(model.getScoredFile());
 		
 		Button btnSelectCsvFile = new Button(composite, SWT.NONE);
@@ -155,7 +155,7 @@ public class Predicta {
 		
 		Label lblRiskTaking = new Label(composite, SWT.NONE);
 		lblRiskTaking.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		lblRiskTaking.setText(" Risk taking ");
+		lblRiskTaking.setText("Risk taking");
 		
 		Scale scale = new Scale(composite, SWT.NONE);
 		scale.addSelectionListener(new SelectionAdapter() {
@@ -180,7 +180,7 @@ public class Predicta {
 		if(currentRisk > scale.getMaximum()) currentRisk = scale.getMaximum();
 		
 		scale.setSelection((int)currentRisk);
-		scale.setToolTipText("-1.0 = only certain cases, 0.0 = normal, 1.0 = try uncertain cases");
+		scale.setToolTipText("-1.0 = only certain cases, 0.0 = normal (exptected value), 1.0 = try uncertain cases");
 		new Label(composite, SWT.NONE);
 		
 		Label lblResults = new Label(composite, SWT.NONE);
@@ -190,7 +190,7 @@ public class Predicta {
 		text_2 = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
 		text_2.setEditable(false);
 		text_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		text_2.setToolTipText("Results are stored to CSV text file. Each row contains the predicted value.");
+		text_2.setToolTipText("Results are stored to CSV text file. Each row contains a predicted value/score.");
 		text_2.setText(model.getResultsFile());
 		
 		Button btnSelectCsvFile_1 = new Button(composite, SWT.NONE);
@@ -229,7 +229,8 @@ public class Predicta {
 		btnPredict.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(optimizer.startOptimization(model.getTrainingFile(), model.getScoredFile(), model.getResultsFile(), model.getRisk())){
+				if(optimizer.startOptimization(model.getTrainingFile(), model.getScoredFile(), model.getResultsFile(), 
+						model.getRisk(), model.getOptimizationTime())){
 					//btnPredict.setEnabled(false);
 					//btnStopComputation.setEnabled(true);
 				}
@@ -242,7 +243,7 @@ public class Predicta {
 				}
 			}
 		});
-		btnPredict.setText(" Predict ");
+		btnPredict.setText("Calculate scoring");
 		
 		btnStopComputation.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -299,6 +300,8 @@ public class Predicta {
 				scale.setSelection((int)currentRisk);
 				
 				statusLine.setText("");
+				
+				optimizer.stopOptimization();
 			}
 		});
 		mntmNewItem.setText("Reset");
@@ -333,7 +336,7 @@ public class Predicta {
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox mb = new MessageBox(shlPredicta, SWT.OK);
 				
-				String msg = model.getAppName() + " scoring v. " + model.getAppVersion() + 
+				String msg = model.getAppName() + " v. " + model.getAppVersion() + 
 						"\n (C) Copyright Tomas Ukkonen 2016\n" + 
 						"<tomas.ukkonen@iki.fi>";
 				
@@ -343,7 +346,7 @@ public class Predicta {
 				
 			}
 		});
-		mntmAboutPredicta.setText("About Predicta");
+		mntmAboutPredicta.setText("About..");
 		
 		///////////////////////////////////////////////////////////////////////////////
 		// create polling thread that polls for the current status of optimization

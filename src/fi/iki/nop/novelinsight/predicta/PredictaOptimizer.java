@@ -10,7 +10,8 @@ public class PredictaOptimizer {
 	private String errorMsg = "";
 	
 	// starts optimization, returns false if optimization cannot started or if it ended to a failure
-	public boolean startOptimization(String trainingFile, String scoringFile, String resultsFile, double risk){
+	public boolean startOptimization(String trainingFile, String scoringFile, String resultsFile, double risk, double optimizationTime)
+	{
 		if(Math.random() < 0.10){
 			errorMsg = "Random Error";
 			return false;
