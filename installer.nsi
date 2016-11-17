@@ -28,11 +28,21 @@ File /r help
 File /r ni-scoring_lib
 
 CreateShortCut "$DESKTOP\NI Scoring.lnk" "$INSTDIR\ni-scoring.exe"
-
  
 # define uninstaller name
 WriteUninstaller $INSTDIR\uninstaller.exe
- 
+
+# write uninstall information to windows registery
+
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Novel Insight Scoring" \
+                 "DisplayName" "Novel Insight Scoring"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Novel Insight Scoring" \
+                 "UninstallString" "$\"$INSTDIR\uninstaller.exe$\""
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Novel Insight Scoring" \
+                 "QuietUninstallString" "$\"$INSTDIR\uninstaller.exe$\" /S"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Novel Insight Scoring" \
+                 "Publisher" "Novel Insight"
+
  
 #-------
 # default section end
@@ -56,5 +66,7 @@ RMDir /r $INSTDIR\ni-scoring_lib
 RMDir /r $INSTDIR\help
 RMDir $INSTDIR
 Delete "$DESKTOP\NI Scoring.lnk"
+
+DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Novel Insight Scoring"
  
 SectionEnd
