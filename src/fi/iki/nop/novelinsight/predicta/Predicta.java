@@ -84,7 +84,7 @@ public class Predicta {
 	 */
 	protected void createContents() {
 		shlPredicta = new Shell();
-		shlPredicta.setSize(450, 300);
+		shlPredicta.setSize(615, 412);
 		shlPredicta.setText(model.getAppName());
 		shlPredicta.setLayout(new FillLayout(SWT.HORIZONTAL));
 		shlPredicta.setImage(new Image(Display.getDefault(), "novel-insight-predicta-icon.ico"));
